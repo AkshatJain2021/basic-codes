@@ -15,6 +15,8 @@ public:
             m[t[i]]--;
         }
       unordered_map<char,int>::iterator it;
+        //for(auto it:m){
+        //if(it.second>=1)return false;}
         for(it=m.begin();it!=m.end();it++)
         {
             if(it->second)
