@@ -1,39 +1,49 @@
-#include <bits/stdc++.h> 
-/****************************************************************
- 
-    Following is the class structure of the Node class:
-
-        class Node
-        {
-        public:
-	        int data;
-	        Node *next;
-	        Node(int data)
-	        {
-		        this->data = data;
-		        this->next = NULL;
-	        }
-        };
-
-*****************************************************************/
-
-int findIntersection(Node *firstHead, Node *secondHead)
+int intersectPoint(Node* head1, Node* head2)
 {
-    //Write your code here
-    unordered_map<Node*,int>m;
-    while(firstHead!=NULL)
+    // Your Code Here
+    int len1=0,len2=0;
+    Node*temp1=head1;
+    Node*temp2=head2;
+    while(temp1!=NULL || temp2!=NULL)
     {
-        m[firstHead]++;
-        firstHead=firstHead->next;
-    }
-    while(secondHead!=NULL)
-    {
-        m[secondHead]--;
-        if(m[secondHead]==0)
+        if(temp1!=NULL)
         {
-            return secondHead->data;
+            len1++;
+            temp1=temp1->next;
         }
-        secondHead=secondHead->next;
+        if(temp2!=NULL)
+        {
+            len2++;
+            temp2=temp2->next;
+        }
+    }
+    int diff=abs(len1-len2);
+    temp1=head1;
+    temp2=head2;
+    if(len1>=len2)
+    {
+        while(diff)
+        {
+            temp1=temp1->next;
+            diff--;
+        }
+    }
+    else{
+        while(diff)
+        {
+            temp2=temp2->next;
+            diff--;
+        }
+    }
+    while(temp1!=NULL)
+    {
+        if(temp1==temp2)
+        {
+            return temp1->data;
+        }
+        temp1=temp1->next;
+        temp2=temp2->next;
     }
     return -1;
 }
+
