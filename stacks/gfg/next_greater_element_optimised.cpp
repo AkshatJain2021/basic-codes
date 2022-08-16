@@ -18,7 +18,7 @@ class Solution
                 v.push_back(st.top());
                 st.push(arr[i]);
             }
-            else if(st.top()<arr[i])
+            else if(st.top()<=arr[i])
             {
                 bool push=false;
                 st.pop();
